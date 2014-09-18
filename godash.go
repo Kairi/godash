@@ -10,9 +10,8 @@ import (
 	"reflect"
 )
 
-const (
-)
-
+const argErrorStr = "Argument Error"
+const argError = errors.New("Argument Error")
 //
 func checkIterable(value reflect.Value) error {
 	kind := value.Kind()

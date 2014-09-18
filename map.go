@@ -6,7 +6,10 @@ import (
 )
 
 
-// exported function
+
+/*
+  Map function iterate Map, Slice, Array, String, and apply fnc to each value
+*/
 func Map(lst interface{}, fnc interface{}) (interface{}, error) {
 	lstVal := reflect.ValueOf(lst)
 	err := checkIterable(lstVal)

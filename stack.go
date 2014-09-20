@@ -1,20 +1,20 @@
 package godash
 
 type Stack struct {
-	emptyFlg bool
-	top *Element
-	size int
+	top      *Element
+	size     int
 }
 
-type Element struct {
-	value interface{}
-	next *Element
+
+func NewStack() *Stack {
+	return new(Stack)
 }
-	
 
-
-func (s *Stack) isEmpty() bool {
-	return s.emptyFlg
+func (s *Stack) IsEmpty() bool {
+	if s.size > 0 {
+		return false
+	}
+	return true
 }
 
 func (s *Stack) Len() int {
@@ -22,27 +22,23 @@ func (s *Stack) Len() int {
 }
 
 func (s *Stack) Push(value interface{}) {
-	s.top = &Element{value, s.top}
+	s.top = &Element{value, s.top, nil}
 	s.size++
-	s.emptyFlg = false
 }
 
 func (s *Stack) Pop() interface{} {
-	if !s.isEmpty() {
+	if s.size > 0 {
 		value := s.top.value
 		s.top = s.top.next
-		s.size--
+		s.size--		
 		return value
 	}
 	return nil
 }
 
 func (s *Stack) Peep() interface{} {
-	if !s.isEmpty() {
+	if s.size > 0 {
 		return s.top.value
 	}
 	return nil
 }
-
-
-

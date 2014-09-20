@@ -28,7 +28,7 @@ func FindIndex(lst interface{}, fnc interface{}) (int, error) {
 		} 
 	}
 */
-	return -1
+	return -1, nil
 	// if slice
 }
 

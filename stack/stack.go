@@ -1,10 +1,20 @@
-package godash
+package stack
 
-type Stack struct {
-	top      *Element
-	size     int
+// Element is an element of a stack.
+type Element struct {
+	// The value stored with this element.
+	value          interface{}
+	
+	// The stack to which this element belongs.
+	stack *Stack
+
+	next *Element
 }
 
+type Stack struct {
+	top  *Element
+	size int
+}
 
 func NewStack() *Stack {
 	return new(Stack)
@@ -22,7 +32,7 @@ func (s *Stack) Len() int {
 }
 
 func (s *Stack) Push(value interface{}) {
-	s.top = &Element{value:value, next:s.top, previous:nil}
+	s.top = &Element{value: value, stack:s, next: s.top}
 	s.size++
 }
 
@@ -30,7 +40,7 @@ func (s *Stack) Pop() interface{} {
 	if s.size > 0 {
 		value := s.top.value
 		s.top = s.top.next
-		s.size--		
+		s.size--
 		return value
 	}
 	return nil

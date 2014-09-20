@@ -1,7 +1,12 @@
-package godash
+package queue
+
+type Element struct {
+	value          interface{}
+	next, previous *Element
+}
 
 type Queue struct {
-	top *Element
+	top  *Element
 	tail *Element
 	size int
 }
@@ -9,7 +14,6 @@ type Queue struct {
 func NewQueue() *Queue {
 	return new(Queue)
 }
-
 
 func (q *Queue) IsEmpty() bool {
 	if q.size > 0 {
@@ -30,11 +34,11 @@ func (q *Queue) Enqueue(value interface{}) {
 func (q *Queue) Push(value interface{}) {
 	q.size++
 	if q.size == 1 { // when first Element
-		q.top = &Element{value:value, next:nil, previous:nil}
+		q.top = &Element{value: value, next: nil, previous: nil}
 		q.tail = q.top
-		return 
-	}	
-	q.tail.previous = &Element{value:value, next:nil, previous:nil}
+		return
+	}
+	q.tail.previous = &Element{value: value, next: nil, previous: nil}
 	q.tail = q.tail.previous
 
 }
@@ -55,6 +59,8 @@ func (q *Queue) Pop() interface{} {
 }
 
 func (q *Queue) Peep() interface{} {
-	return q.top
+	if !q.IsEmpty() {
+		return q.top
+	}
+	return nil
 }
-

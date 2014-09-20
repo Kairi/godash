@@ -11,7 +11,7 @@ type Queue struct {
 	size int
 }
 
-func NewQueue() *Queue {
+func New() *Queue {
 	return new(Queue)
 }
 

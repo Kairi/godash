@@ -16,7 +16,7 @@ type Stack struct {
 	size int
 }
 
-func NewStack() *Stack {
+func New() *Stack {
 	return new(Stack)
 }
 

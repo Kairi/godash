@@ -22,7 +22,7 @@ func (s *Stack) Len() int {
 }
 
 func (s *Stack) Push(value interface{}) {
-	s.top = &Element{value, s.top, nil}
+	s.top = &Element{value:value, next:s.top, previous:nil}
 	s.size++
 }
 

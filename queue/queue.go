@@ -2,7 +2,7 @@ package queue
 
 type Element struct {
 	value          interface{}
-	next, previous *Element
+	previous *Element
 }
 
 type Queue struct {
@@ -22,7 +22,7 @@ func (q *Queue) IsEmpty() bool {
 	return true
 }
 
-func (q *Queue) Len() int {
+func (q *Queue) Len() int {	
 	return q.size
 }
 
@@ -34,11 +34,11 @@ func (q *Queue) Enqueue(value interface{}) {
 func (q *Queue) Push(value interface{}) {
 	q.size++
 	if q.size == 1 { // when first Element
-		q.top = &Element{value: value, next: nil, previous: nil}
+		q.top = &Element{value: value, previous: nil}
 		q.tail = q.top
 		return
 	}
-	q.tail.previous = &Element{value: value, next: nil, previous: nil}
+	q.tail.previous = &Element{value: value, previous: nil}
 	q.tail = q.tail.previous
 
 }
